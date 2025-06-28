@@ -5,7 +5,7 @@ steps:
 
 #  Docker Build
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['builds', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}', '.']
+  args: ['build', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}', '.']
 
 #  Docker Push
 - name: 'gcr.io/cloud-builders/docker'
