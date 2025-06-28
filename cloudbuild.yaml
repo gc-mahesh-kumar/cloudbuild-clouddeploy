@@ -17,4 +17,5 @@ substitutions:
     _APP_NAME: container-images/microservice-01
 
 options:
-  logging: CLOUD_LOGGING_ONLY
+  #logging: CLOUD_LOGGING_ONLY
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
