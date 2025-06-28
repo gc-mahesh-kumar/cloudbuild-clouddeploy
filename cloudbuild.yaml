@@ -1,0 +1,20 @@
+steps:
+#Build and push the image
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args: ['builds', 'submit', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
+
+#  Docker Build
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['builds', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}', '.']
+
+#  Docker Push
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
+
+substitutions:
+    #_REGION: us-central1
+    _ARTIFACTS_REGISTRY_URL: us-central1-docker.pkg.dev
+    _APP_NAME: container-images/microservice-01
+
+options:
+  logging: CLOUD_LOGGING_ONLY
