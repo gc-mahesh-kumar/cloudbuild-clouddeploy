@@ -1,15 +1,15 @@
 steps:
 #Build and push the image
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   args: ['builds', 'submit', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['builds', 'submit', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
 
-#  Docker Build
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}', '.']
+# #  Docker Build
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}', '.']
 
-#  Docker Push
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
+# #  Docker Push
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
 
 substitutions:
     #_REGION: us-central1
