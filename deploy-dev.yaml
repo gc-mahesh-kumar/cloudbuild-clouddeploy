@@ -10,3 +10,7 @@ spec:
         env:
         - name: NAME
           value: DEV
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 1000m          

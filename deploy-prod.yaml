@@ -9,4 +9,8 @@ spec:
       - image: microservice-01
         env:
         - name: NAME
-          value: PRODUCTION      
+          value: PRODUCTION
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: 2000m            
