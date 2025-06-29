@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-  return "<h1>Hello World from Google Cloud - Cloud Build Demo</h1>"
+  return "<h1>Hello World from Google Cloud - Cloud Build Demostration</h1>"
 
 @app.route("/version")
 def version():
