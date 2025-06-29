@@ -3,12 +3,23 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['builds', 'submit', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
 
+#Continuous Delivery Pipeline
+- name: gcr.io/cloud-builders/gcloud
+  args: 
+      [
+        "deploy", "releases", "create", "app-release-${SHORT_SHA}",
+        "--delivery-pipeline", "cloud-run-pipeline",
+        "--region", "${_REGION}",
+        "--images", "microservice-01=${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}"
+      ]
+
+
 #If you have only one Project and you want to deploy it after image is build go with this option
 #gcloud run deploy microservice-01 --region=us-central1 --allow-unauthenticated --image=us-central1-docker.pkg.dev/cloud-custom-demos/container-images/microservice-01:f27037a
 
-#Deploy to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'microservice-01', '--region=${_REGION}', '--allow-unauthenticated', '--image', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
+# #Deploy to Cloud Run --> Grant Service Account Cloud Run Developer Role
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args: ['run', 'deploy', 'microservice-01', '--region=${_REGION}', '--allow-unauthenticated', '--image', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
 
 # #  Docker Build
 # - name: 'gcr.io/cloud-builders/docker'
@@ -17,9 +28,6 @@ steps:
 # #  Docker Push
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
-
-
-
 
 substitutions:
     _REGION: us-central1
