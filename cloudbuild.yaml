@@ -1,9 +1,9 @@
 steps:
-#Build and push the image
+#Build and push the image --> Cloud Build Service Account, Service Account User& Viewer Role
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['builds', 'submit', '-t', '${_ARTIFACTS_REGISTRY_URL}/$PROJECT_ID/${_APP_NAME}:${SHORT_SHA}']
 
-#Continuous Delivery Pipeline
+#Continuous Delivery Pipeline --> Need Cloud Deploy Releaser Role
 - name: gcr.io/cloud-builders/gcloud
   args: 
       [
